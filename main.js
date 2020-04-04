@@ -352,9 +352,9 @@ function writeScore(game) {
 
 var game = new Board();
 
-IMAGESIZE = 130;
-IMAGES = [];
-NAMES = ["oliver", "owen", "cass", "alastair",
+const IMAGESIZE = 130;
+var IMAGES = [];
+const NAMES = ["oliver", "owen", "cass", "alastair",
           "nic", "cath", "ben", "alexp", "alexs", "louise", "melissa", 
         "henry", "david","clare", "harry"];
 
