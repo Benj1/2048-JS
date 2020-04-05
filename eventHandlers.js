@@ -1,19 +1,3 @@
-window.addEventListener('keydown', function (k) {
-    if (1 <= frame && frame <= TRANSITIONLENGTH){
-        game.resetTiles();
-    }
-    frozenGrid = [];
-    for(var i=0; i<4; i++){
-        var row = game.grid[i];
-        frozenGrid.push([...row])
-    }
-    var tempData = game.move(k.keyCode);
-    if (tempData[0]){
-        newData = tempData;
-        frame = 1;
-    }
-})
-
 var touchEvent = {
     startX : 0,
     startY : 0,
@@ -23,21 +7,27 @@ var touchEvent = {
     allowedNoise : 100
 }
 
+window.addEventListener('keydown', function (k) {
+    if (k.keyCode == K_LEFT || k.keyCode == K_RIGHT || k.keyCode == K_UP ||
+        k.keyCode == K_DOWN){
+            handleMove(k.keyCode);
+    }
+})
+
 window.addEventListener('touchstart', function(evt){
+    evt.preventDefault();
     var touchObj = evt.changedTouches[0];
     touchEvent.startX = touchObj.pageX;
     touchEvent.startY = touchObj.pageY;
     touchEvent.startTime = new Date().getTime();
-    evt.preventDefault();
 })
-
 
 window.addEventListener('touchmove', function(evt){
     evt.preventDefault();
 })
 
-
 window.addEventListener('touchend', function(evt){
+    evt.preventDefault();  
     var touchObj = evt.changedTouches[0];
     distX = touchObj.pageX - touchEvent.startX;
     distY = touchObj.pageY - touchEvent.startY;
@@ -51,16 +41,31 @@ window.addEventListener('touchend', function(evt){
     var swipeDownBol = (elapsedTime <= touchEvent.allowedTime && 
         distY >= touchEvent.threshold && Math.abs(distX) <= touchEvent.allowedNoise);
     if(swipeRightBol){
-        game.move(K_RIGHT);
+        handleMove(K_RIGHT);
     }
     else if(swipeLeftBol){
-        game.move(K_LEFT);
+        handleMove(K_LEFT);
     }
     else if(swipeUpBol){
-        game.move(K_UP);
+        handleMove(K_UP);
     }
     else if(swipeDownBol){
-        game.move(K_DOWN);
+        handleMove(K_DOWN);
     }
-    evt.preventDefault();    
 })
+
+function handleMove(key){
+    if (1 <= frame && frame <= TRANSITIONLENGTH){
+        game.resetTiles();
+    }
+    frozenGrid = [];
+    for(var i=0; i<4; i++){
+        var row = game.grid[i];
+        frozenGrid.push([...row])
+    }
+    var tempData = game.move(key);
+    if (tempData[0]){
+        newData = tempData;
+        frame = 1;
+    }
+}
