@@ -1,3 +1,8 @@
+const K_LEFT = 37;
+const K_RIGHT = 39;
+const K_UP = 38;
+const K_DOWN = 40;
+
 class Board {
     constructor() {
         this.grid = [Array(4), Array(4), Array(4), Array(4)];
@@ -35,16 +40,16 @@ class Board {
 
     move(direction){
         var newTile = false;
-        if (direction == 37){
+        if (direction == K_LEFT){
             newTile = this.moveLeft();
         }
-        else if (direction == 39){
+        else if (direction == K_RIGHT){
             newTile = this.moveRight();
         }
-        else if (direction == 40){
+        else if (direction == K_DOWN){
             newTile = this.moveDown();
         }
-        else if (direction == 38){
+        else if (direction == K_UP){
             newTile = this.moveUp();
         }
         if (newTile) {
@@ -208,7 +213,7 @@ class Board {
    
     stillAlive() {
         if (this.emptySpaces().length > 0){
-            return True
+            return true;
         }
         else {
             for(var i=0; i<4; i++){
