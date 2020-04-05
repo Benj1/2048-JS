@@ -29,17 +29,17 @@ function updateGameArea(game) {
             gameDialog("You Win!");
             pause = 0;
             frame = 0;
-            game = new Board();
+            game.resetBoard();
         }
     }
 
     if(!game.stillAlive()){
         pause += 1;
         if (pause > 30){
-            gameDialog("You Lose!");
             frame = 0;
             pause = 0;
-            game = new Board();
+            game.resetBoard();
+            gameDialog("You Lose!");
         }
     }
 }

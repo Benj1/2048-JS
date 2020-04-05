@@ -10,6 +10,11 @@ class Board {
         this.initialiseLayout();
     }
 
+    resetBoard() {
+        this.score = 0;
+        this.initialiseLayout();
+    }
+
     initialiseLayout() {
         for(var i=0; i<4; i++){
             for(var j=0; j<4; j++){
