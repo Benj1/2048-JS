@@ -2,7 +2,7 @@ var touchEvent = {
     startX : 0,
     startY : 0,
     startTime : 0,
-    allowedTime : 200,
+    allowedTime : 500,
     threshold : 150,
     allowedNoise : 100
 }
