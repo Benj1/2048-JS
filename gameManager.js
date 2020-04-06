@@ -14,7 +14,7 @@ function drawEmptyTiles(){
     for(var i=0; i<4; i++){
         for(var j=0; j<4; j++){
             CONTEXT.fillStyle = DARKGREY;
-            CONTEXT.fillRect(20 + 150*i, 80 + 150*j, 130, 130);
+            CONTEXT.fillRect(20 + 150*i, 80 + 150*j, IMAGESIZE, IMAGESIZE);
         }
     }
 }
